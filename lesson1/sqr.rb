@@ -1,5 +1,5 @@
 def square (base, altitude)
-	0.5 * base * altitude
+  0.5 * base * altitude
 end
 
 puts "Введите основание:"
