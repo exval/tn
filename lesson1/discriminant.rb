@@ -19,6 +19,6 @@ if discriminant > 0
 elsif discriminant == 0 
 	puts "Дискриминант = #{discriminant}. x = #{-b / 2.0 * @a}"
 else
-	puts "Корней нет!"
+  puts "Корней нет!"
 end
 		
