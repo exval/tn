@@ -26,7 +26,7 @@ month = gets.to_i
 
 puts "Enter the year:"
 year = gets.to_i
-	
+
 	if year <= 0
 		abort "Wrong year!"
 	end
