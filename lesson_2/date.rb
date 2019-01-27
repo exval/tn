@@ -32,3 +32,4 @@ year = gets.to_i
 	end
 
 puts "Count for current date: #{count(day_of_month, month, year)}"
+ 
