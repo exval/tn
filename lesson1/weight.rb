@@ -1,5 +1,5 @@
 def perfect_weight(height)
-	height - 110
+  height - 110
 end
 
 puts "Как тебя зовут?"
