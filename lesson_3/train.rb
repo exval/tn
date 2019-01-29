@@ -37,7 +37,7 @@ class Train
   def route_up(route)
     @route = route
     @current_station = 0
-    @route.stations[@current_station].take_train
+    @route.stations[@current_station].take_train(self)
   end
 
   def move_ahead
