@@ -6,7 +6,7 @@ class Station
   end
 
   def take_train (train)
-    @trains.push(train)   
+    @trains << train   
   end
   
   def get_away(train)
