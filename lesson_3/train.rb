@@ -1,6 +1,11 @@
 class Train
+<<<<<<< HEAD
   attr_reader :number, :type 
   attr_accessor :current_station, :current_station_index, :route
+=======
+  attr_reader :number, :type, :route
+  attr_accessor  :station_index
+>>>>>>> fa02d8761f1bf3d99aec8248b46ee1d1f2fb700a
   def initialize(number, type, carriages)
     @number = number
     @type = type
@@ -20,13 +25,13 @@ class Train
   def hook
     return puts "You are moving, stop and you can do this" unless moving
     @carriages += 1
-    puts "One more carriage, now - #{@carriages}"
+    return puts "One more carriage, now - #{@carriages}"
   end
 
   def unhook
     return puts "You are moving, stop and you can do this" unless moving
     @carriages -= 1
-    puts "One less carriages, now - #{@carriages}"
+    return puts "One less carriages, now - #{@carriages}"
   end
 
   def moving
@@ -34,6 +39,7 @@ class Train
   end
 
   def route_up(route)
+<<<<<<< HEAD
     self.route = route
     self.current_station_index = 0
     self.current_station = route.stations.first
@@ -68,5 +74,38 @@ class Train
 
   def previos_index
     current_station_index - 1
+=======
+    @route = route
+    @current_station = 0
+    current_station.take_train(self)
+  end
+
+  def move_ahead
+    if next_station 
+      @route.stations.get_away(self)
+      current_station.take_train(self)
+      @station_index += 1
+    end
+  end
+
+  def move_back
+    if previous_station
+      @route.stations[@station_index].get_away(self)
+      current_station.take_train(self)
+      @station_index -= 1
+    end
+  end
+
+  def next_station
+    @route.stations[@station_index + 1]
+  end
+
+  def previous_station
+     @route.stations[@station_index - 1]
+  end
+
+  def current_station
+    @route.stations[@station_index]
+>>>>>>> fa02d8761f1bf3d99aec8248b46ee1d1f2fb700a
   end
 end
