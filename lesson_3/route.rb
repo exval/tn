@@ -13,6 +13,6 @@ class Route
   end
 
   def list_station
-    stations.each { |stations| puts stations}
+    stations.each { |station| puts station.name}
   end
 end
