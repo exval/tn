@@ -36,21 +36,21 @@ class Train
 
   def route_up(route)
     self.route = route
-    current_station_index = 0
-    current_station = self.route.stations.first
-    current_station.take_train(self)
+    @current_station_index = 0
+    @current_station = self.route.stations.first
+    @current_station.take_train(self)
   end
 
   def move_ahead
     return if current_station_index == route.stations.size - 1
-    current_station = next_station
-    current_station_index = next_index
+    @current_station = next_station
+    @current_station_index = next_index
   end
 
   def move_back
     return if current_station_index.zero?
-    current_station = previous_station
-    current_station_index = previos_index
+    @current_station = previous_station
+    @current_station_index = previos_index
   end
 
   def next_station
