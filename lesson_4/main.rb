@@ -31,7 +31,7 @@ def main_menu
 end
 
 def what_do(choice)
-    case choice
+  case choice
     when 1 then create_station
     when 2 then create_train
     when 3 then create_route
