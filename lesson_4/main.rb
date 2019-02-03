@@ -26,8 +26,8 @@ def main_menu
   puts '11. Посмотреть список станций'
   puts '12. Посмотреть список поездов на станции'
   puts '13. Выход'
-choice = gets.to_i
-what_do(choice)
+  choice = gets.to_i
+  what_do(choice)
 end
 
 def what_do(choice)
@@ -61,16 +61,16 @@ def create_train
   number = gets.to_i
   puts "Какой тип поезда? 1 - пассажирский , 2 - грузовой."
   type_of_train = gets.to_i
-    if type_of_train == 1 
-      @all_trains << PassagerTrain.new(number)
-      puts "Создан пассжирский поезд с номером - #{number}"
-    elsif type_of_train == 2
-      @all_trains << CargoTrain.new(number)
-      puts "Создан грузовой поезд с номером -  #{number}"
-    else
-      puts "Проверь, что ты вводишь корректно!"
-      create_train
-    end
+  if type_of_train == 1 
+    @all_trains << PassagerTrain.new(number)
+    puts "Создан пассжирский поезд с номером - #{number}"
+  elsif type_of_train == 2
+    @all_trains << CargoTrain.new(number)
+    puts "Создан грузовой поезд с номером -  #{number}"
+  else
+    puts "Проверь, что ты вводишь корректно!"
+    create_train
+  end
 end
 
 def create_route
@@ -153,7 +153,6 @@ end
 
 def choice_train
   return no_train unless @all_trains.any?
-  list_trains
   puts "Выбери поезд:"
   choice = gets.to_i
   choice <= @all_trains.size ? @all_trains[choice - 1] : choice_train
