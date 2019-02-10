@@ -1,4 +1,10 @@
+require_relative 'manufacturer'
+require_relative 'instance_counter'
+
 class Train
+  include Manufacture
+  include InstanceCounter
+  
   @@all_trains = {}
   
   def self.find(number)
@@ -12,6 +18,7 @@ class Train
     @carriages = []
     @speed = 0
     @@all_trains[@number] = self
+    register_instance
   end
 
   def acceleration
