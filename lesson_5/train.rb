@@ -65,7 +65,7 @@ class Train
     return if current_station_index.zero?
     @current_station = previous_station
     @current_station_index = previos_index
-    puts station.name
+    puts @current_station.name
   end
 
   protected
