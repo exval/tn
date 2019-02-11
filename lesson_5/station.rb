@@ -1,12 +1,15 @@
 class Station
+  @@all = {}
   def self.all_obj
-    ObjectSpace.each_object(Station).to_a
+     # ObjectSpace.each_object(Station).to_a
+    @@all.each {|names| puts names}
   end
   
   attr_accessor :name, :trains
   def initialize(name)
     @name = name
-    @trains = [] 
+    @trains = []
+    @@all[name] = self 
   end
 
   def take_train (train)
