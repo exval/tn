@@ -4,7 +4,7 @@ require_relative 'instance_counter'
 class Train
   include Manufacture
   include InstanceCounter
-  NUMBER = /^[a-z]{3}\d{4}[a-z]{2}$/i
+  NUMBER = /^\d{3}[a-z]{2}$/i
 
   @@all_trains = {}
   
@@ -20,7 +20,9 @@ class Train
     @speed = 0
     @@all_trains[@number] = self
     register_instance
-    valid?
+    valid!
+  end
+  
   end
 
   def acceleration
@@ -70,12 +72,20 @@ class Train
     puts @current_station.name
   end
 
-  protected
-#methods move_ahead и move_back - controlled interfaces 
-#control train, don't need to give  
-#for user abuse methods below. 
   def valid?
+    valid!
+  rescue
+    false
+  end
+
+  protected
+#методы move_ahead и move_back - это интерфесы, через них и идёт 
+#управление поездом, не нужно давать 
+#пользовтелю использовать использовать методы ниже. 
+
+  def valid!
     raise "Некорректный номер (проверь шаблон)!" if number !~ NUMBER 
+    true
   end
   
   def next_station
