@@ -40,7 +40,7 @@ class Train
     puts "#{carriages}"
   end
 
-  def unhook
+  def unhookдд
     return puts "You are moving, stop and you can do this" unless not_moving?
     return "Can't be minus" unless @carriages.any?
     carriages.pop
