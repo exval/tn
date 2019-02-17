@@ -21,12 +21,11 @@ class Train
     @@all_trains[@number] = self
     register_instance
     valid!
+    puts "Создан поезд - ' #{number}'"
   end
   
-  end
 
   def acceleration
-    puts "Gaining speed"
     @speed += 20
   end
 
@@ -37,10 +36,9 @@ class Train
   def hook (carriage)
     return puts "You are moving, stop and you can do this" unless not_moving?
     carriages << carriage
-    puts "#{carriages}"
   end
 
-  def unhookдд
+  def unhook
     return puts "You are moving, stop and you can do this" unless not_moving?
     return "Can't be minus" unless @carriages.any?
     carriages.pop
@@ -69,7 +67,7 @@ class Train
     return if current_station_index.zero?
     @current_station = previous_station
     @current_station_index = previos_index
-    puts @current_station.name
+    @current_station.name
   end
 
   def valid?
