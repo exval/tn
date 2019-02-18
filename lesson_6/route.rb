@@ -3,7 +3,8 @@ class Route
   def initialize(first, last)
     @first = first
     @last = last
-    @stations = [first, last] 
+    @stations = [first, last]
+    validate_route! 
   end
 
   def add_intermediate(station)
@@ -29,11 +30,7 @@ class Route
   
   attr_reader :first, :last
   def validate_route!
-    return if station?(first) && station?(last)
+    return if @stations.first.is_a?(Station) && @stations.last.is_a?(Station)
     raise "Начальная или конечная не является объектом класса."  
-  end
-
-  def station?(station)
-    station.class == Station
   end
 end
