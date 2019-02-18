@@ -16,11 +16,11 @@ class Train
   attr_accessor :current_station, :current_station_index, :route
   def initialize(number)
     @number = number
+    valid!
     @carriages = []
     @speed = 0
     @@all_trains[@number] = self
     register_instance
-    valid!
     puts "Создан поезд - ' #{number}'"
   end
   
