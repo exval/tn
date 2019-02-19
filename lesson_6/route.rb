@@ -3,7 +3,7 @@ class Route
   def initialize(first, last)
     @first = first
     @last = last
-    @stations = [first, last, stations]
+    @stations = [first, last]
     validate! 
   end
 
@@ -29,9 +29,7 @@ class Route
   
   attr_reader :first, :last, :stations
   def validate! 
-    @stations.each {|station| raise "Начальная или конечная не является объектом класса." unless station.is_a?(Station)}
-    raise "Начальная и конечная станция одинаковые!" if @stations.first == @stations.last
-    # raise "Что-то пошло не так." if @stations.each {|station| return if station.is_a?(Station)}
+    stations.each {|station| raise "Начальная или конечная не является объектом класса." unless station.is_a?(Station)}
     true  
   end
 end
