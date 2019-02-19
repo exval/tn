@@ -9,7 +9,7 @@ class Station
   attr_accessor :name, :trains
   def initialize(name)
     @name = name
-    valid_station!
+    validate!
     @trains = []
     @@all[name] = self 
   end
@@ -26,15 +26,15 @@ class Station
     trains.select { |train| train.type == type }
   end
 
-  def valid_station?
-    valid_station!
+  def valid?
+    validate!
   rescue
     false
   end
 
   private
 
-  def valid_station!
+  def validate!
     raise 'Название должно содержать от 3-ёх букв ' if name !~ STATION_NAME
     true
   end

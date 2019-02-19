@@ -4,7 +4,7 @@ class Route
     @first = first
     @last = last
     @stations = [first, last]
-    validate_route! 
+    validate! 
   end
 
   def add_intermediate(station)
@@ -19,9 +19,8 @@ class Route
     stations.each { |station| puts station.name}
   end
 
-  def validate_route?
-    validate_route!
-    true
+  def valid?
+    validate!
   rescue
     false    
   end
@@ -29,8 +28,9 @@ class Route
   private
   
   attr_reader :first, :last
-  def validate_route!
-    return if @stations.first.is_a?(Station) && @stations.last.is_a?(Station)
-    raise "Начальная или конечная не является объектом класса."  
+  def validate! 
+    raise "Начальная или конечная не является объектом класса." unless @stations.first.is_a?(Station) || @stations.last.is_a?(Station)
+    raise "Начальная и конечная станция одинаковые!" if @stations.first == @stations.last
+    true  
   end
 end

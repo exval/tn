@@ -71,7 +71,7 @@ class Train
   end
 
   def valid?
-    valid!
+    validate!
   rescue
     false
   end
@@ -81,7 +81,7 @@ class Train
 #управление поездом, не нужно давать 
 #пользовтелю использовать использовать методы ниже. 
 
-  def valid!
+  def validate!
     raise "Некорректный номер (проверь шаблон)!" if number !~ NUMBER 
     true
   end
