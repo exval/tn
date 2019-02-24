@@ -61,9 +61,6 @@ end
 def create_train 
   puts "Введи его номер: "
   number = gets.chomp
-  until number == validate!
-    number
-  end
   puts "Какой тип поезда? 1 - пассажирский , 2 - грузовой."
   type_of_train = gets.to_i
   if type_of_train == 1 
@@ -156,8 +153,8 @@ def list_station
 end
 
 def list_carriage
-  train = choice_train
-  train.each_carriage {|carriage| puts carriage}
+  @train = choice_train
+  @train.each_carriage {|carriage| puts carriage}
 end
 
 def list_trains_on_station
