@@ -21,7 +21,6 @@ class Train
     @speed = 0
     @@all_trains[@number] = self
     register_instance
-    puts "Создан поезд - ' #{number}'"
   end
   
 

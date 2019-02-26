@@ -47,6 +47,7 @@ def what_do(choice)
     when 12 then list_trains_on_station
     when 13 then abort "Good luck, bye!"
     when 14 then list_carriage
+        
   end
   main_menu
 end
@@ -119,13 +120,20 @@ end
 
 def hook_to_train
   train = choice_train
-  carriage = train.type == 'Passager Train' ? PassagerCarriages.new : CargoCarriages.new
+  train.type == 'Passager Train' ? (puts 'Введи количество мест:') : (puts 'Введи объем:')
+  number = gets.to_i
+  carriage = train.type == 'Passager Train' ? PassagerCarriages.new(number) : CargoCarriages.new(number)
   train.hook(carriage)
 end
 
 def unhook_from_train
   train = choice_train
   train.unhook
+end
+
+def take_seat
+  take = choice_train
+  
 end
 
 def go_ahead
@@ -140,10 +148,6 @@ def go_back
   train.move_back
 end
 
-def create_carriage
-  #создается вагон
-end
-
 def list_trains
   @all_trains.each_with_index { |train, index| puts "#{index + 1}, поезд номер - #{train.number}"}
 end
@@ -154,7 +158,7 @@ end
 
 def list_carriage
   @train = choice_train
-  @train.each_carriage {|carriage| puts carriage}
+  @train.each_carriage { |carriage| puts carriage }
 end
 
 def list_trains_on_station
@@ -164,6 +168,7 @@ end
 
 def choice_train
   return no_train unless @all_trains.any?
+  list_trains
   puts "Выбери поезд:"
   choice = gets.to_i
   choice <= @all_trains.size ? @all_trains[choice - 1] : choice_train
@@ -178,9 +183,9 @@ end
 
 def choice_carriage
   list_carriage
-  puts "Какой вагон создать (пассжирский/грузовой)?"
+  puts "Выбери вагон:"
   choice = gets.to_i
-  choice <= @train.carriages.size ? @train.carriages : choice_station
+  choice <= @train.carriages.size ? @train.carriages[choice - 1] : choice_carriage
 
 end
 
