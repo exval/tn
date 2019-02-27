@@ -11,7 +11,9 @@ require_relative "cargo_carriages"
 @all_trains = []
 @route = nil
 
+
 def main_menu
+  loop do
   puts 'Выберите дейтсвие:'
   puts '1. Создать станцию'
   puts '2. Создать поезд'
@@ -20,14 +22,16 @@ def main_menu
   puts '5. Убрать станцию из маршрута'
   puts '6. Назначить маршрут поезду'
   puts '7. Прицепить вагон к поезду'
-  puts '8. Отцепить вагон от поезда'
-  puts '9. Передвинуть поезд вперёд по маршруту'
-  puts '10. Передвинуть поезд назад по маршруту'
-  puts '11. Посмотреть список станций'
-  puts '12. Посмотреть список поездов на станции'
-  puts '13. Выход'
-  choice = gets.to_i
-  what_do(choice)
+    puts '8. Отцепить вагон от поезда'
+    puts '9. Передвинуть поезд вперёд по маршруту'
+    puts '10. Передвинуть поезд назад по маршруту'
+    puts '11. Посмотреть список станций'
+    puts '12. Посмотреть список поездов на станции'
+    puts '13. Выход'
+    choice = gets.to_i
+    break if choice == 13
+    what_do(choice)
+  end
 end
 
 def what_do(choice)
@@ -47,9 +51,8 @@ def what_do(choice)
     when 12 then list_trains_on_station
     when 13 then abort "Good luck, bye!"
     when 14 then list_carriage
-        
+    when 15 then take_seat
   end
-  main_menu
 end
 
 def create_station  
@@ -132,8 +135,18 @@ def unhook_from_train
 end
 
 def take_seat
-  take = choice_train
-  
+  begin 
+  carriage = choice_carriage
+    if carriage.type == 'Passenger'
+      carriage.take_seat
+    else
+      puts 'Введите объем:'
+      volume = gets.to_i
+      carriage.occupied_vol(volume)
+    end
+  rescue
+  puts 'Не получилось.' 
+  end
 end
 
 def go_ahead

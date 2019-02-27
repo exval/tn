@@ -4,7 +4,7 @@ class PassagerCarriages < Carriage
   attr_reader :all_seats, :taken_seat
 
   def initialize(all_seats)
-    @type = 'Passager Train'
+    @type = 'Passenger'
     @all_seats = all_seats
     @taken_seat = 0
     validate!
