@@ -54,6 +54,7 @@ def what_do(choice)
     when 13 then list_trains_on_station
     when 14 then list_carriage
     when 15 then abort "Good luck, bye!"
+    when 16 then list_all
   end
 end
 
@@ -202,7 +203,11 @@ def choice_carriage
   puts "Выбери вагон:"
   choice = gets.to_i
   choice <= @train.carriages.size ? @train.carriages[choice - 1] : choice_carriage
+end
 
+def list_all
+  station = @all_stations[choice_station - 1]
+  station.each_train { |train| puts train.number }
 end
 
 def no_route

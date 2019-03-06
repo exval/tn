@@ -77,7 +77,7 @@ class Train
 
   def each_carriage
     carriages.each_with_index do |carriage, index|
-      puts "#{index + 1}. "
+      index + 1
       yield carriage
     end
   end

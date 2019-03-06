@@ -34,7 +34,7 @@ class Station
   
   def each_train
     trains.each_with_index do |train, index|
-      puts "#{index + 1}. "
+      index + 1
       yield train
     end
   end
