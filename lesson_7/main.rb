@@ -23,14 +23,16 @@ def main_menu
     puts '6. Назначить маршрут поезду'
     puts '7. Прицепить вагон к поезду'
     puts '8. Отцепить вагон от поезда'
-    puts '9. Передвинуть поезд вперёд по маршруту'
-    puts '10. Передвинуть поезд назад по маршруту'
-    puts '11. Посмотреть список станций'
-    puts '12. Посмотреть список поездов на станции'
-    puts '13. Выход'
+    puts '9. Занять место.'
+    puts '10. Передвинуть поезд вперёд по маршруту'
+    puts '11. Передвинуть поезд назад по маршруту'
+    puts '12. Посмотреть список станций'
+    puts '13. Посмотреть список поездов на станции'
+    puts '14. Посмотреть список вагонов'
+    puts '15. Выход'
     choice = gets.to_i
     
-    break if choice == 13
+    break if choice == 15
       what_do(choice)
   end
 end
@@ -45,14 +47,13 @@ def what_do(choice)
     when 6 then assign_route_to_train
     when 7 then hook_to_train
     when 8 then unhook_from_train
-    when 9 then go_ahead
-    when 10 then go_back
-    when 11 then choice_carriage
-    # when 11 then list_station
-    when 12 then list_trains_on_station
-    when 13 then abort "Good luck, bye!"
+    when 9 then take_seat
+    when 10 then go_ahead
+    when 11 then go_back
+    when 12 then list_station
+    when 13 then list_trains_on_station
     when 14 then list_carriage
-    when 15 then take_seat
+    when 15 then abort "Good luck, bye!"
   end
 end
 
