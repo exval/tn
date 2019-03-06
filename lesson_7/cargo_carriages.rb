@@ -1,10 +1,10 @@
 require_relative "carriage"
 
-class CargoCarriages < Carriage 
+class CargoCarriage < Carriage 
   attr_reader :volume
   attr_accessor :occupied_volume
   def initialize(volume)
-    @type = 'Cargo Train'
+    @type = 'Cargo'
     @volume = volume
     @occupied_volume = 0
     validate!

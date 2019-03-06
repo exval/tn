@@ -1,6 +1,6 @@
 require_relative "carriage"
 
-class PassagerCarriages < Carriage
+class PassagerCarriage < Carriage
   attr_reader :all_seats, :taken_seat
 
   def initialize(all_seats)

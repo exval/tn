@@ -14,14 +14,14 @@ require_relative "cargo_carriages"
 
 def main_menu
   loop do
-  puts 'Выберите дейтсвие:'
-  puts '1. Создать станцию'
-  puts '2. Создать поезд'
-  puts '3. Создать маршрут'
-  puts '4. Добавить станцию к маршруту'
-  puts '5. Убрать станцию из маршрута'
-  puts '6. Назначить маршрут поезду'
-  puts '7. Прицепить вагон к поезду'
+    puts 'Выберите дейтсвие:'
+    puts '1. Создать станцию'
+    puts '2. Создать поезд'
+    puts '3. Создать маршрут'
+    puts '4. Добавить станцию к маршруту'
+    puts '5. Убрать станцию из маршрута'
+    puts '6. Назначить маршрут поезду'
+    puts '7. Прицепить вагон к поезду'
     puts '8. Отцепить вагон от поезда'
     puts '9. Передвинуть поезд вперёд по маршруту'
     puts '10. Передвинуть поезд назад по маршруту'
@@ -29,8 +29,9 @@ def main_menu
     puts '12. Посмотреть список поездов на станции'
     puts '13. Выход'
     choice = gets.to_i
+    
     break if choice == 13
-    what_do(choice)
+      what_do(choice)
   end
 end
 
@@ -123,9 +124,9 @@ end
 
 def hook_to_train
   train = choice_train
-  train.type == 'Passager Train' ? (puts 'Введи количество мест:') : (puts 'Введи объем:')
+  train.type == 'Passenger' ? (puts 'Введи количество мест:') : (puts 'Введи объем:')
   number = gets.to_i
-  carriage = train.type == 'Passager Train' ? PassagerCarriages.new(number) : CargoCarriages.new(number)
+  carriage = train.type == 'Passenger' ? PassagerCarriage.new(number) : CargoCarriage.new(number)
   train.hook(carriage)
 end
 
@@ -144,10 +145,11 @@ def take_seat
       volume = gets.to_i
       carriage.occupied_vol(volume)
     end
-  rescue
-  puts 'Не получилось.' 
+    
+    rescue
+      puts 'Не получилось.' 
+    end
   end
-end
 
 def go_ahead
   train = choice_train
