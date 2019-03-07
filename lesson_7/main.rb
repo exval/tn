@@ -118,7 +118,6 @@ end
 
 def assign_route_to_train
   return no_route unless @route
-  list_trains
   train = choice_train
   train.route_up(@route)
   puts "#{@route} for #{train.type} with #{train.number} "
