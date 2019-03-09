@@ -30,7 +30,7 @@ class Route
   attr_reader :first, :last, :stations
   
   def validate! 
-    stations.each {|station| raise "Начальная или конечная не является объектом класса." unless station.is_a?(Station)}
+    stations.each { |station| raise "Начальная или конечная не является объектом класса." unless station.is_a?(Station)}
     true  
   end
 end
