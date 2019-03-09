@@ -174,7 +174,13 @@ end
 
 def list_carriage
   @train = choice_train
-  @train.each_carriage { |carriage| puts carriage }
+  @train.each_carriage do |carriage| 
+    if carriage.type == 'Passenger'  
+      puts "#{carriage} свободно: #{carriage.free_seats}" 
+    else
+      puts "#{carriage} свободно: #{carriage.free_volume}"
+    end
+  end
 end
 
 def list_trains_on_station
@@ -206,7 +212,9 @@ end
 
 def list_all
   station = @all_stations[choice_station - 1]
-  station.each_train { |train| puts train.number }
+  station.each_train do |train| 
+    puts "Номер: #{train.number}, тип:#{train.type}, кол-во вагонов:#{train.carriages.size}" 
+  end
 end
 
 def no_route

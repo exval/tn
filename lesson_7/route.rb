@@ -25,9 +25,9 @@ class Route
     false    
   end
 
-  private
+  protected
   
-  attr_reader :first, :last, :stations
+  attr_reader :first, :last
   
   def validate! 
     stations.each { |station| raise "Начальная или конечная не является объектом класса." unless station.is_a?(Station)}
