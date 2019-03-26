@@ -11,7 +11,9 @@ class CargoCarriage < Carriage
   end
 
   def occupied_vol(add_volume)
-    raise "Ты не можешь больше добавить, максимальный объем #{volume}" if volume < occupied_volume
+    if volume < occupied_volume
+      raise "Ты не можешь больше добавить, максимальный объем #{volume}"
+    end
 
     self.occupied_volume += add_volume
   end

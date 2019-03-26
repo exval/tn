@@ -84,7 +84,9 @@ end
 
 def create_route
   return puts 'Маршрут уже существует' if @route
-  return puts 'Должно быть создано не менее двух станций' unless @all_stations.length > 1
+  unless @all_stations.length > 1
+    return puts 'Должно быть создано не менее двух станций'
+  end
 
   list_station
   puts 'Выберите начальную станцию:'
@@ -168,11 +170,15 @@ def go_back
 end
 
 def list_trains
-  @all_trains.each_with_index { |train, index| puts "#{index + 1}, поезд номер - #{train.number}" }
+  @all_trains.each_with_index do |train, index|
+    puts "#{index + 1}, поезд номер - #{train.number}"
+  end
 end
 
 def list_station
-  @all_stations.each_with_index { |station, index| puts "#{index + 1}, #{station.name}" }
+  @all_stations.each_with_index do |station, index|
+    puts "#{index + 1}, #{station.name}"
+  end
 end
 
 def list_carriage

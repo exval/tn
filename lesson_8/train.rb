@@ -80,7 +80,6 @@ class Train
 
   def each_carriage
     carriages.each_with_index do |carriage, index|
-      index + 1
       yield carriage
     end
   end
