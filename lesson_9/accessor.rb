@@ -1,13 +1,31 @@
-class Module
-  def attr_accessor_with_history(*methods)
-    methods.each do |method|
-      raise TypeError.new("method name  is not symbol") unless method.is_a?(Symbol) 
-        define_method(method) do 
-          instance_variable_get("@#{method}")
-        end
-        define_method("#{method}=") do |v|
-          instance_variable_set("@#{method}",v)
-        end
+module Accessors
+  def attr_accessor_with_history(*names)
+  names.each do |name|
+    var_name =  "@#{name}".to_sym
+    attr_history_name = "@#{name}_history".to_sym
+
+      define_method(name) { instance_variable_get(var_name) }
+      define_method("#{name}_history") { instance_variable_get(attr_history_name) }
+
+      define_method("#{name}=") do |v|
+        hist_val = instance_variable_get(var_name)
+        instance_variable_set(var_name, v)
+        attr_history = instance_variable_get(:@attr_history_name)
+        attr_history ||= []
+        attr_history << hist_val
+      end
+
+      
     end
   end
+
+  def strong_attr_accessor
+    
+  end
+end
+
+
+class Test
+  extend Accessors
+  attr_accessor_with_history :a, :b, :k
 end
