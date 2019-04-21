@@ -1,11 +1,19 @@
 require_relative 'manufacturer'
 require_relative 'instance_counter'
+require_relative 'validation'
+require_relative 'accessor'
 
 class Train
   include Manufacture
   include InstanceCounter
-  NUMBER = /^\d{3}[a-z]{2}$/i.freeze
+  include Validation
+  extend Accessors
 
+  VAL_FORMAT = /^\d{3}[a-z]{2}$/i.freeze
+
+  validate :number, :presence
+  validate :number, :format, VAL_FORMAT
+  
   @@all_trains = {}
 
   def self.find(number)
@@ -86,11 +94,11 @@ class Train
 
   protected
 
-  def validate!
-    raise 'Некорректный номер (проверь шаблон)!' if number !~ NUMBER
+  # def validate!
+  #   raise 'Некорректный номер (проверь шаблон)!' if number !~ NUMBER
 
-    true
-  end
+  #   true
+  # end
 
   def next_station
     return unless route
