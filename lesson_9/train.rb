@@ -13,7 +13,10 @@ class Train
 
   validate :number, :presence
   validate :number, :format, VAL_FORMAT
-  
+
+   attr_accessor_with_history :speed, :current_station 
+   attr_accessor_with_history :number, :route, :carriages
+
   @@all_trains = {}
 
   def self.find(number)
@@ -22,6 +25,7 @@ class Train
 
   attr_reader :number, :type, :carriages, :speed
   attr_accessor :current_station, :current_station_index, :route
+  
   def initialize(number)
     @number = number
     validate!
@@ -93,12 +97,6 @@ class Train
   end
 
   protected
-
-  # def validate!
-  #   raise 'Некорректный номер (проверь шаблон)!' if number !~ NUMBER
-
-  #   true
-  # end
 
   def next_station
     return unless route

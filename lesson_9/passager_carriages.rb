@@ -1,6 +1,11 @@
 require_relative 'carriage'
+require_relative 'accessor'
+require_relative 'validation'
 
 class PassagerCarriage < Carriage
+  include Validation
+  extend Accessors
+
   attr_reader :all_seats, :taken_seat
 
   def initialize(all_seats)

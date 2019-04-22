@@ -1,4 +1,12 @@
+require_relative 'instance_counter'
+require_relative 'accessor'
+require_relative 'validation'
+
 class Station
+  include InstanceCounter
+  include Validation
+  extend Accessors
+
   @@all = {}
   STATION_NAME = /[a-z]{3,}/i.freeze
   def self.all_obj
@@ -7,6 +15,12 @@ class Station
   end
 
   attr_accessor :name, :trains
+
+  attr_accessor_with_history :name, :trains
+  
+  validate :name, :presence  
+  validate :name, :format, STATION_NAME
+
   def initialize(name)
     @name = name
     validate!
@@ -39,11 +53,9 @@ class Station
     end
   end
 
-  private
+  # def validate!
+  #   raise 'Название должно содержать от 3-ёх букв ' if name !~ STATION_NAME
 
-  def validate!
-    raise 'Название должно содержать от 3-ёх букв ' if name !~ STATION_NAME
-
-    true
-  end
+  #   true
+  # end
 end

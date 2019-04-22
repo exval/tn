@@ -41,7 +41,7 @@ module Validation
   
     def validate!
       self.class.validations.each do |validation|
-        name = instance_variable_get("@#{validation[:name]}".to_sym)
+        value = instance_variable_get("@#{validation[:name]}".to_sym)
         method_name = "validate_#{validation[:type]}".to_sym
         send(method_name, value, validation[:params])
       end    

@@ -1,6 +1,15 @@
 require_relative 'carriage'
+require_relative 'accessor'
+require_relative 'validation'
+
 
 class CargoCarriage < Carriage
+  include Validation
+  extend Accessors
+
+  attr_accessor_with_history :occupied_volume, :volume
+
+  validate :volume, :presence
   attr_reader :volume
   attr_accessor :occupied_volume
   def initialize(volume)
@@ -20,12 +29,5 @@ class CargoCarriage < Carriage
 
   def free_volume
     @volume - @occupied_volume
-  end
-
-  private
-
-  def validate!
-    raise 'Это должно быть числом' unless volume.class == Integer
-    raise 'Должно быть больше нуля' if volume < 0
   end
 end
